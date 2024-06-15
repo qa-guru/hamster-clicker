@@ -14,6 +14,7 @@ public class HamsterClickerApplication {
 //        new screens.Hamster().tapMorseCode();         // for morse (OLD BAD Version)
     }
 
+
     // Here we config driver, boring!
     static void setup() {
         Configuration.browser = MobileDriver.class.getName();

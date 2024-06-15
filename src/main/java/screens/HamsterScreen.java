@@ -3,11 +3,11 @@ package screens;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.interactions.Actions;
 import utils.MorseUtils;
-import utils.RandomUtils;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.sleep;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static utils.RandomUtils.getRandomInt;
 
 public class HamsterScreen {
 
@@ -21,47 +21,56 @@ public class HamsterScreen {
     }
 
     void longTap() {
-        Actions actions = new Actions(getWebDriver());
-        actions.clickAndHold(hamsterBody)
-                .pause(800 + new RandomUtils().getRandomInt(10, 100))
-                .release(hamsterBody);
-        actions.build().perform();
+        new Actions(getWebDriver())
+                .clickAndHold(hamsterBody)
+                .pause(800 + getRandomInt(10, 100))
+                .release(hamsterBody)
+                .perform();
     }
 
     // Here we make unlimited amount clicks / taps to hamster
     public void tapManyTimes() {
         while (true) {                                        // unlimited cycle
             quickTap();                                       // tap on hamster
+
             System.out.println(totalMoney.text());            // logging to console total money amount
-            sleep(new RandomUtils().getRandomInt(100, 1000)); // wait random time, milliseconds
+            sleep(getRandomInt(10, 100)); // wait random time, milliseconds
         }
     }
 
     public void tapMorseCode(String morseCode) {
-        for (int i = 0; i < morseCode.length(); i++) {
-            tapMorseLetter(morseCode.split("")[i]);
+        for (char letter : morseCode.toCharArray()) {
+            tapMorseLetter(String.valueOf(letter));
         }
 
         // todo realize command to pick up award
     }
 
     void tapMorseLetter(String letter) {
-        MorseUtils morseUtils = new MorseUtils();
-        String letterMorseCode = morseUtils.getLetterMorseCode(letter);
+        String letterMorseCode = new MorseUtils().getLetterMorseCode(letter);
 
-        for (int i = 0; i < letterMorseCode.length(); i++) {
-            String morseI = letterMorseCode.split("")[i];
-            if (morseI.equals(".")) {
-                quickTap();
-            } else {
-                longTap();
+        for (char morseChar : letterMorseCode.toCharArray()) {
+            switch (morseChar) {
+                case '.':
+                    quickTap();
+                    break;
+                case '-':
+                    longTap();
+                    break;
+                default:
+                    hardFart();
+                    break;
             }
         }
 
         System.out.println(letter + ": " + letterMorseCode);
-        sleep(1500 + new RandomUtils().getRandomInt(10, 100));
+        sleep(1500 + getRandomInt(10, 100));
     }
 
+    private void hardFart() {
+        System.out.println("poo poooo pooo");
+    }
+}
 
     // OLD VARIANT
     // Example for morse code  - - • • - - - • • • - • • •
@@ -102,4 +111,3 @@ public class HamsterScreen {
 //    void waitAfterLetter() {
 //        sleep(1500 + new RandomUtils().getRandomInt(10, 100));
 //    }
-}
