@@ -9,9 +9,8 @@ public class HamsterClickerApplication {
     // Start app here
     public static void main(String[] args) {
         setup();
+        new HamsterScreen().tapMorseCode("COIN");     // for morse (Improver Version)
         new HamsterScreen().tapManyTimes();         // for unlimited taps
-//        new HamsterScreen().tapMorseCode("GAMEFI");     // for morse (Improver Version)
-//        new screens.Hamster().tapMorseCode();         // for morse (OLD BAD Version)
     }
 
 

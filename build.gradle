@@ -16,6 +16,7 @@ dependencies {
     implementation(
             "com.codeborne:selenide:$selenideVersion",
             "io.appium:java-client:$appiumVersion",
+//            "com.google.cloud:google-cloud-speech:2.0.5",
             "org.slf4j:slf4j-simple:$slf4jVersion"
     )
 }

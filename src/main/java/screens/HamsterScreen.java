@@ -12,12 +12,15 @@ import static utils.RandomUtils.getRandomInt;
 public class HamsterScreen {
 
     // Elements
-    SelenideElement hamsterBody = $x("//android.widget.Button[@text='Hamster Kombat']"),
-                    totalMoney = $x("//android.widget.TextView[@index='3']"); // todo fix locator
-
+    SelenideElement totalMoney = $x("//android.widget.TextView[@index='3']"), // todo fix locator
+                    hamsterBody = $x("//android.widget.Button[@text='Hamster Kombat']"),
+                    enterPerTapLabel = $x("//android.widget.TextView[@text='Earn per tap']"),
+                    dailyCipherLabel = $x("//android.widget.TextView[@text='Daily cipher']"),
+                    morsePrize = $x("//android.widget.Button[@text='Take the prize']");
 
     void quickTap() {
         hamsterBody.click();
+//        System.out.println(totalMoney.text());
     }
 
     void longTap() {
@@ -33,17 +36,20 @@ public class HamsterScreen {
         while (true) {                                        // unlimited cycle
             quickTap();                                       // tap on hamster
 
-            System.out.println(totalMoney.text());            // logging to console total money amount
-            sleep(getRandomInt(10, 100)); // wait random time, milliseconds
+//            System.out.println(totalMoney.text());            // logging to console total money amount
+//            sleep(getRandomInt(10, 100)); // wait random time, milliseconds
         }
     }
 
     public void tapMorseCode(String morseCode) {
+        activateMorseMode();
+
         for (char letter : morseCode.toCharArray()) {
             tapMorseLetter(String.valueOf(letter));
         }
 
-        // todo realize command to pick up award
+        takeMorsePrize();
+        deactivateMorseMode();
     }
 
     void tapMorseLetter(String letter) {
@@ -64,50 +70,31 @@ public class HamsterScreen {
         }
 
         System.out.println(letter + ": " + letterMorseCode);
-        sleep(1500 + getRandomInt(10, 100));
+        sleep(2000 + getRandomInt(10, 100));
+    }
+
+    private void takeMorsePrize() {
+        morsePrize.click();
+    }
+
+
+    private void activateMorseMode() {
+        if(!dailyCipherLabel.isDisplayed()) {
+            enterPerTapLabel.click();
+            enterPerTapLabel.click();
+            enterPerTapLabel.click();
+        }
+    }
+
+    private void deactivateMorseMode() {
+        if(dailyCipherLabel.isDisplayed()) {
+            enterPerTapLabel.click();
+            enterPerTapLabel.click();
+            enterPerTapLabel.click();
+        }
     }
 
     private void hardFart() {
         System.out.println("poo poooo pooo");
     }
 }
-
-    // OLD VARIANT
-    // Example for morse code  - - • • - - - • • • - • • •
-    //                         G     A   M   E F       I
-//    void tapMorseCode() {
-//
-//        // G
-//        longTap();
-//        longTap();
-//        quickTap();
-//        waitAfterLetter();
-//        // A
-//        quickTap();
-//        longTap();
-//        waitAfterLetter();
-//        // M
-//        longTap();
-//        longTap();
-//        waitAfterLetter();
-//        // E
-//        quickTap();
-//        waitAfterLetter();
-//        // F
-//        quickTap();
-//        quickTap();
-//        longTap();
-//        quickTap();
-//        waitAfterLetter();
-//        // I
-//        quickTap();
-//        quickTap();
-//        waitAfterLetter();
-//
-//        // todo realize command to pick up award
-//    }
-//
-//
-//    void waitAfterLetter() {
-//        sleep(1500 + new RandomUtils().getRandomInt(10, 100));
-//    }
