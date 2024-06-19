@@ -4,7 +4,7 @@
 2. Настроить компьютер для запуска mobile-тестов
 - Установить android studio https://developer.android.com/studio
 - Прописать настройки:<br/>
-Параметры Path:<br/>
+  Параметры Path:<br/>
 
 **Windows**:<br/>
 %ANDROID_HOME%\tools<br/>
@@ -19,9 +19,9 @@ source ~/.bash_profile
 
 - Установить node.js - https://nodejs.org/en/download
 - Установить Appium Server https://github.com/appium/appium<br/>
-sudo npm install -g appium@next<br/>
+  sudo npm install -g appium@next<br/>
 - Установить драйвер uiautomator2
-sudo appium driver install --source=npm uiautomator2 (если команда не подходит - можно выполнить эту appium driver install uiautomator2)
+  sudo appium driver install --source=npm uiautomator2 (если команда не подходит - можно выполнить эту appium driver install uiautomator2)
 - Установить Appium Ispector https://github.com/appium/appium-inspector
 - Запустить Appium Server<br/>
-appium server --base-path /wd/hub
+  appium server --base-path /wd/hub
