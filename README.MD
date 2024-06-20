@@ -100,7 +100,7 @@ npm install -g appium
 ```
 Сбросить кэш npm:
 ```
-npm install -g appium
+npm cache clean --force
 ```
 Данные команды в зависимости от возникаемых ошибок выполнять если appium server
 не стартует
