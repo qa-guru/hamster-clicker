@@ -2,19 +2,19 @@
 1. Настроить компьютер для запуска web-тестов https://github.com/qa-guru/getting-started-java/wiki
 2. Настроить компьютер для запуска mobile-тестов
 
-##Установка Android studio
+## Установка Android studio
 Скачать и установить: [https://developer.android.com/studio](https://developer.android.com/studio)
 
-##Прописать настройки, параметры Path:<br/>
+## Прописать настройки, параметры Path:
 
-###Windows:
+### Windows:
 %ANDROID_HOME%\tools
 %ANDROID_HOME%\tools\bin
 %ANDROID_HOME%\platform-tools
 
 Одной строкой, можно скопировать и добавить в конец Path: ;%ANDROID_HOME%\tools;%ANDROID_HOME%\tools\bin;%ANDROID_HOME%\platform-tools
 
-###Mac:
+### Mac:
 ```
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
@@ -48,7 +48,7 @@ sudo appium driver install uiautomator2
 ## Установка Appium Inspector
 Скачать и установить под свою OS: [https://github.com/appium/appium-inspector/releases](https://github.com/appium/appium-inspector/releases)
 
-##Установка appium/doctor
+## Установка appium/doctor
 Инструкция: [https://www.npmjs.com/package/@appium/doctor](https://www.npmjs.com/package/@appium/doctor)
 <br>Очень полезная утилита - позволит узнать что у Вас не в порядке
 <br>Запускает командой:
@@ -68,7 +68,7 @@ appium-doctor
 <br>Disable adb authorization timeout
 <br>Disable permission monitoring
 
-###Дальнейшие действия:
+### Дальнейшие действия:
 * Запустить IDE
 * Подключить кабелем Android телефон к компьютеру и выбрать режим передачи данных
 * В терминале набрать команду:
@@ -96,7 +96,7 @@ npm install -g appium
 
 На всякий случай можно обновить npm в случае проблем:
 ```
-npm install -g appium
+npm install -g npm
 ```
 Сбросить кэш npm:
 ```
@@ -105,7 +105,7 @@ npm install -g appium
 Данные команды в зависимости от возникаемых ошибок выполнять если appium server
 не стартует
 
-###Далее запускаем Appium inspector
+### Далее запускаем Appium inspector
 Указываем следующие параметры:
 **Remote Host:** localhost<br>
 **Remote Path:** /wd/hub
@@ -113,12 +113,12 @@ npm install -g appium
 В Capability Builder
 заполняете Name и Value значения так:
 
-| Заголовок столбца 1 | Заголовок столбца 2 |
-|-----------|--------------------|
-| platformName | android            |
-| deviceName       | серийный номер вашего телефона |
-| automationName| UiAutomator2                   |
-|ignoreHiddenApiPolicyError           | true                   |
+| name                       | value       |
+|----------------------------|--------------------------------|
+| platformName               | android                        |
+| deviceName                 | серийный номер вашего телефона |
+| automationName             | UiAutomator2                   |
+| ignoreHiddenApiPolicyError | true                           |
 
 Последнее свойство ignoreHiddenApiPolicyError требовалось конкретно для моей
 модели телефона
