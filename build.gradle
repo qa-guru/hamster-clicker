@@ -1,7 +1,6 @@
 plugins {
     id 'java-library'
 }
-
 repositories {
     mavenCentral()
 }
@@ -17,7 +16,23 @@ dependencies {
             "com.codeborne:selenide:$selenideVersion",
             "io.appium:java-client:$appiumVersion",
 //            "com.google.cloud:google-cloud-speech:2.0.5",
-            "org.slf4j:slf4j-simple:$slf4jVersion"
+            "org.slf4j:slf4j-simple:$slf4jVersion",
+            'org.junit.jupiter:junit-jupiter-api:5.11.0-M2',
+            'io.rest-assured:rest-assured:5.4.0'
     )
 }
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    options {
+        systemProperties(System.getProperties())
+    }
+    testLogging.showStandardStreams = true
+    testLogging.exceptionFormat = 'full'
+    useJUnitPlatform()
+}
+
 
