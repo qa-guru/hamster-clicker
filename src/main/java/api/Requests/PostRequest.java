@@ -3,6 +3,7 @@ package api.Requests;
 import api.specs.RequesSpecs;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 public class PostRequest {
     private final String token;
@@ -11,9 +12,14 @@ public class PostRequest {
         this.token = token;
     }
 
-    public Response makePostRequest(String endpoint, String body) {
-        return RestAssured.given(RequesSpecs.requestSpecs).header("Authorization", "Bearer " + token)
-                .body(body).post(endpoint).then().log().status().log().body().extract().response();
+    public Response makePostRequest(String endpoint, String body, boolean enableLogging) {
+        RequestSpecification requestSpec = RestAssured.given(RequesSpecs.requestSpecs).header("Authorization", "Bearer " + token)
+                .body(body);
 
+        if (enableLogging) {
+            return requestSpec.post(endpoint).then().log().status().log().body().extract().response();
+        } else {
+            return requestSpec.post(endpoint).then().extract().response();
+        }
     }
 }

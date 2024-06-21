@@ -17,7 +17,7 @@ public class MakeTap {
     @Test
     public void makeTap() {
         String body = "{\"count\": " + earnPerTap + ",\"availableTaps\":6000,\"timestamp\":" + utils.generateTimestamp() + "}";
-        Response response = postRequest.makePostRequest("tap", body).then().extract().response();
+        Response response = postRequest.makePostRequest("tap", body, true).then().extract().response();
     }
 
     @Test
@@ -26,7 +26,7 @@ public class MakeTap {
         double balanceCoins = 0;
 
         String body = "{\"count\": " + earnPerTap + ", \"availableTaps\": " + availableTaps + ", \"timestamp\": " + utils.generateTimestamp() + "}";
-        Response response = postRequest.makePostRequest("tap", body).then().extract().response();
+        Response response = postRequest.makePostRequest("tap", body, false).then().extract().response();
         JsonPath jsonPath = response.jsonPath();
 
         availableTaps = jsonPath.getInt("clickerUser.availableTaps");
@@ -37,7 +37,7 @@ public class MakeTap {
 
         while (availableTaps > 0) {
             body = "{\"count\": " + earnPerTap + ", \"availableTaps\": " + availableTaps + ", \"timestamp\": " + utils.generateTimestamp() + "}";
-            response = postRequest.makePostRequest("tap", body);
+            response = postRequest.makePostRequest("tap", body, false);
             jsonPath = response.jsonPath();
 
             availableTaps = jsonPath.getInt("clickerUser.availableTaps");
