@@ -5,7 +5,7 @@ import io.restassured.specification.RequestSpecification;
 import static io.restassured.RestAssured.with;
 import static io.restassured.http.ContentType.JSON;
 
-public class RequesSpecs {
+public class RequestSpecs {
     private static final String BASE_URI = "https://api.hamsterkombat.io";
     private static final String BASE_PATH = "/clicker/";
 

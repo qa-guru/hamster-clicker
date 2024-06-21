@@ -1,6 +1,6 @@
 package api.Requests;
 
-import api.specs.RequesSpecs;
+import api.specs.RequestSpecs;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -13,7 +13,7 @@ public class PostRequest {
     }
 
     public Response makePostRequest(String endpoint, String body, boolean enableLogging) {
-        RequestSpecification requestSpec = RestAssured.given(RequesSpecs.requestSpecs).header("Authorization", "Bearer " + token)
+        RequestSpecification requestSpec = RestAssured.given(RequestSpecs.requestSpecs).header("Authorization", "Bearer " + token)
                 .body(body);
 
         if (enableLogging) {

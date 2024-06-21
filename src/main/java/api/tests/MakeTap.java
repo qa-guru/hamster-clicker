@@ -13,7 +13,6 @@ public class MakeTap {
     Integer earnPerTap = 11;
     PostRequest postRequest = new PostRequest(configLoader.getToken());
 
-
     @Test
     public void makeTap() {
         String body = "{\"count\": " + earnPerTap + ",\"availableTaps\":6000,\"timestamp\":" + utils.generateTimestamp() + "}";
@@ -23,7 +22,7 @@ public class MakeTap {
     @Test
     public void makeMoney() throws InterruptedException {
         int availableTaps = 6000;
-        double balanceCoins = 0;
+        double balanceCoins;
 
         String body = "{\"count\": " + earnPerTap + ", \"availableTaps\": " + availableTaps + ", \"timestamp\": " + utils.generateTimestamp() + "}";
         Response response = postRequest.makePostRequest("tap", body, false).then().extract().response();
